@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}{{ username }}'s Activity History{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">📜 Activity History of {{ username }}</h2>
+
+{% if activities %}
+<table class="table table-bordered table-hover">
+  <thead class="table-success">
+    <tr>
+      <th>Activity</th>
+      <th>Amount / Usage</th>
+      <th>Base Points</th>
+      <th>Bonus Points</th>
+      <th>Total Points</th>
+      <th>Emission (kg CO₂)</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in activities %}
+    <tr>
+      <td>
+        {% if a["activity"] == "walk" %}🚶 Walking
+        {% elif a["activity"] == "bike" %}🚴 Cycling
+        {% elif a["activity"] == "bus" %}🚌 Public Transport
+        {% elif a["activity"] == "car" %}🚗 Car
+        {% elif a["activity"] == "electricity" %}💡 Electricity
+        {% elif a["activity"] == "veg_meal" %}🥦 Veg Meal
+        {% elif a["activity"] == "non_veg_meal" %}🍗 Non-Veg Meal
+        {% else %}{{ a["activity"] }}{% endif %}
+      </td>
+      <td>
+        {% if a["activity"] == "electricity" %}
+          {{ a["amount"] }} kWh
+        {% elif a["activity"] in ["walk","bike","bus","car"] %}
+          {{ a["amount"] }} km
+        {% else %}
+          {{ a["amount"] }} meal(s)
+        {% endif %}
+      </td>
+      <td>{{ a["base_points"] }}</td>
+      <td>{{ a["bonus_points"] }}</td>
+      <td><strong>{{ a["total_points"] }}</strong></td>
+      <td>{{ a["carbon_emission"] }}</td>
+      <td>{{ a["date"] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No activities found.</p>
+{% endif %}
+
+<a href="/leaderboard" class="btn btn-primary mt-3">⬅ Back to Leaderboard</a>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="card shadow p-3 mb-3 text-center">
+      <h5>🌱 Points</h5>
+      <h2>{{ points }}</h2>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow p-3 mb-3 text-center">
+      <h5>📊 Activities</h5>
+      <h2>{{ activities_count }}</h2>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow p-3 mb-3 text-center">
+      <h5>💡 Eco Tip</h5>
+      <p>{{ eco_tip }}</p>
+    </div>
+  </div>
+</div>
+
+<a href="/activity" class="btn btn-success mb-3">➕ Add Activity</a>
+<a href="/leaderboard" class="btn btn-primary mb-3">🏆 Leaderboard</a>
+
+<!-- Collapsible Points System -->
+<div class="card shadow p-3 mt-3">
+  <h5>
+    ⚡ Points System
+    <button class="btn btn-sm btn-outline-secondary float-end" type="button" data-bs-toggle="collapse" data-bs-target="#pointsTable">
+      Show / Hide
+    </button>
+  </h5>
+  <div class="collapse" id="pointsTable">
+    <table class="table table-bordered table-striped mt-3">
+      <thead class="table-success">
+        <tr>
+          <th>Activity</th>
+          <th>Type</th>
+          <th>Points</th>
+          <th>Bonus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>🚶 Walking</td><td>Travel</td><td>+10</td><td>Eco Bonus</td></tr>
+        <tr><td>🚴 Cycling</td><td>Travel</td><td>+15</td><td>Eco Bonus</td></tr>
+        <tr><td>🚌 Public Transport</td><td>Travel</td><td>+8</td><td>Eco Bonus</td></tr>
+        <tr><td>🚗 Car (Petrol)</td><td>Travel</td><td>+2</td><td>-</td></tr>
+        <tr><td>💡 Electricity</td><td>Energy</td><td>+5 per 5 kWh</td><td>-</td></tr>
+        <tr><td>🥦 Veg Meal</td><td>Food</td><td>+7</td><td>Eco Bonus</td></tr>
+        <tr><td>🍗 Non-Veg Meal</td><td>Food</td><td>+3</td><td>-</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+

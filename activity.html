@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Add Activity{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-center">
+  <div class="card shadow-lg p-4" style="width: 500px;">
+    <h3 class="text-center mb-3">📝 Add Activity</h3>
+    <form method="POST" action="/activity">
+      <div class="mb-3">
+        <label>Activity Type</label>
+        <select name="activity" class="form-select" required>
+          <option value="" disabled selected>Select Activity</option>
+          <option value="walk">🚶 Walking</option>
+          <option value="bike">🚴 Cycling</option>
+          <option value="bus">🚌 Public Transport</option>
+          <option value="car">🚗 Car (Petrol)</option>
+          <option value="electricity">💡 Electricity</option>
+          <option value="veg_meal">🥦 Veg Meal</option>
+          <option value="non_veg_meal">🍗 Non-Veg Meal</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label>Amount / Distance / Usage</label>
+        <input type="number" name="amount" class="form-control" required placeholder="Enter km, kWh, or servings">
+      </div>
+      <button type="submit" class="btn btn-success w-100">Save Activity</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
